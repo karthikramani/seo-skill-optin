@@ -975,9 +975,17 @@
         </div>
     </div>
 
-    <!-- Load Supabase from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-client.js"></script>
+    <!-- CRM JavaScript -->
     <script src="crm-advanced.js"></script>
+    <script>
+        // Initialize on page load
+        console.log('CRM page loaded');
+        if (typeof initCRM === 'function') {
+            console.log('initCRM found, calling...');
+            initCRM();
+        } else {
+            console.error('initCRM not found!');
+        }
+    </script>
 </body>
 </html>
