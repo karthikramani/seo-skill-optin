@@ -739,8 +739,17 @@
     <script>
         document.getElementById('optinForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Replace with your actual opt-in integration
-            alert('Thank you! Check your email for the download link.');
+            
+            // Get form data
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // TODO: Send to your email marketing service here
+            // Example: send to ConvertKit, ActiveCampaign, etc.
+            console.log('Lead captured:', { name, email });
+            
+            // Redirect to thank you page
+            window.location.href = '/thank-you.html';
         });
     </script>
 </body>
