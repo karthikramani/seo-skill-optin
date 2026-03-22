@@ -70,17 +70,27 @@ What topics are you writing about?
     }
 };
 
-// Load data
-function loadContacts() {
-    const stored = localStorage.getItem('crm_contacts');
-    if (stored) {
-        contacts = JSON.parse(stored);
+// Load data (now async, uses API)
+async function loadContacts() {
+    if (window.CRM_API && window.CRM_API.loadContacts) {
+        await window.CRM_API.loadContacts();
+    } else {
+        // Fallback to localStorage
+        const stored = localStorage.getItem('crm_contacts');
+        if (stored) {
+            contacts = JSON.parse(stored);
+        }
     }
 }
 
-// Save data
-function saveContacts() {
-    localStorage.setItem('crm_contacts', JSON.stringify(contacts));
+// Save data (now async, uses API)
+async function saveContacts() {
+    if (window.CRM_API && window.CRM_API.saveContacts) {
+        await window.CRM_API.saveContacts();
+    } else {
+        // Fallback to localStorage
+        localStorage.setItem('crm_contacts', JSON.stringify(contacts));
+    }
 }
 
 // Get all unique tags
@@ -874,3 +884,25 @@ function exportToCSV() {
     const filtered = getFilteredContacts();
     const csv = [
         ['Name', 'Email', 'Phone', 'Stage', 'Source', 'Tags', 'Created At', 'Emails Sent',
+// Initialize CRM (async)
+async function initCRM() {
+    await loadContacts();
+    renderPipeline();
+    
+    // Sync localStorage to API if this is first load with API available
+    if (window.CRM_API && window.CRM_API.syncLocalStorageToAPI) {
+        await window.CRM_API.syncLocalStorageToAPI();
+    }
+}
+
+// Close modals on ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal('contactModal');
+        closeModal('addContactModal');
+        closeModal('emailModal');
+    }
+});
+
+// Start the CRM
+initCRM();

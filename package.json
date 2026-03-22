@@ -1,0 +1,8 @@
+{
+  "name": "seo-skill-crm",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@vercel/kv": "^1.0.1"
+  }
+}
