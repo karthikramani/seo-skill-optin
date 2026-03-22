@@ -913,6 +913,33 @@ async function initCRM() {
     }
 }
 
+// Export to CSV (complete function)
+function exportToCSV() {
+    const filtered = getFilteredContacts();
+    const csv = [
+        ['Name', 'Email', 'Phone', 'Stage', 'Source', 'Tags', 'Created At', 'Emails Sent', 'Notes'],
+        ...filtered.map(c => [
+            c.name,
+            c.email,
+            c.phone || '',
+            stages.find(s => s.id === c.stage).name,
+            c.source || '',
+            (c.tags || []).join('; '),
+            new Date(c.createdAt).toLocaleDateString(),
+            (c.emails || []).length,
+            (c.notes || []).length
+        ])
+    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `crm-contacts-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
 // Close modals on ESC key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
