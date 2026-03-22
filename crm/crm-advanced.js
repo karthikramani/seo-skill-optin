@@ -869,11 +869,6 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
     }
 });
 
-// Export to CSV
-function exportToCSV() {
-    const filtered = getFilteredContacts();
-    const csv = [
-        ['Name', 'Email', 'Phone', 'Stage', 'Source', 'Tags', 'Created At', 'Emails Sent',
 // Initialize CRM
 function initCRM() {
     loadContacts();
