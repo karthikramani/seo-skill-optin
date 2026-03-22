@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free SEO Content Writer Skill for OpenClaw | Write Rank-1 Articles in Minutes</title>
+    <meta name="description" content="Get the SEO Content Writer skill for OpenClaw FREE. Create 2000+ word SEO-optimized articles that rank on Google in minutes. No API keys. No setup.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Satoshi', sans-serif;
+            background: #0a0e1a;
+            color: #e8eaed;
+            line-height: 1.6;
+        }
+
+        .notification-banner {
+            background: linear-gradient(135deg, #ff4444, #ff6b35);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            font-size: 14px;
+        }
+
+        .notification-banner strong {
+            font-weight: 800;
+        }
+
+        .close-banner {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        nav {
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 48px;
+            z-index: 99;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #b8babd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        .nav-cta {
+            background: #00ff88;
+            color: #0a0e1a;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .ticker {
+            background: rgba(0, 255, 136, 0.1);
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #00ff88;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #b8babd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 strong {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #b8babd;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: #00ff88;
+            color: #0a0e1a;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #b8babd;
+        }
+
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .label {
+            font-size: 14px;
+            color: #b8babd;
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .section p {
+            font-size: 18px;
+            color: #b8babd;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .feature-card {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 32px;
+            border-radius: 12px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        .feature-card .emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #b8babd;
+            margin: 0;
+        }
+
+        .value-box {
+            background: rgba(0, 255, 136, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            padding: 40px;
+            border-radius: 16px;
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .value-box .old-price {
+            font-size: 32px;
+            text-decoration: line-through;
+            color: #ff4444;
+            margin-bottom: 16px;
+        }
+
+        .value-box .new-price {
+            font-size: 72px;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 16px;
+        }
+
+        .value-box .savings {
+            font-size: 20px;
+            color: #b8babd;
+        }
+
+        .examples-list {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        .examples-list h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .examples-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .examples-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-family: 'Courier New', monospace;
+            color: #b8babd;
+        }
+
+        .examples-list li:last-child {
+            border-bottom: none;
+        }
+
+        .examples-list li::before {
+            content: "→ ";
+            color: #00ff88;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 48px 0;
+        }
+
+        .testimonial-card {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 32px;
+            border-radius: 12px;
+        }
+
+        .testimonial-card .stars {
+            color: #ffc107;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card .quote {
+            font-size: 16px;
+            color: #e8eaed;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            font-size: 14px;
+            color: #b8babd;
+            font-weight: 600;
+        }
+
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 48px 0;
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-card .step-number {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .step-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .step-card p {
+            font-size: 16px;
+            color: #b8babd;
+            margin: 0;
+        }
+
+        .form-section {
+            background: rgba(26, 31, 46, 0.5);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            padding: 48px;
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 48px auto;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            margin-bottom: 32px;
+            font-size: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(10, 14, 26, 0.8);
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-group input::placeholder {
+            color: #666;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+
+        .form-disclaimer {
+            text-align: center;
+            font-size: 14px;
+            color: #b8babd;
+            margin-top: 16px;
+        }
+
+        footer {
+            background: rgba(10, 14, 26, 0.95);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        footer .logo {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        footer .tagline {
+            color: #b8babd;
+            margin-bottom: 24px;
+        }
+
+        footer .copyright {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .stats-grid,
+            .feature-grid,
+            .testimonials,
+            .how-it-works {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section h2 {
+                font-size: 32px;
+            }
+
+            .value-box .new-price {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        🔥 LIMITED TIME: SEO Content Writer Skill (Worth <strong>$500–$2,000/article</strong>) — Yours <strong>FREE TODAY</strong> 🔥
+        <button class="close-banner" onclick="this.parentElement.style.display='none'">×</button>
+    </div>
+
+    <nav>
+        <div class="logo">🦀 OpenClaw</div>
+        <ul class="nav-links">
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#value">Value</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+        <a href="#claim" class="nav-cta">Claim FREE →</a>
+    </nav>
+
+    <div class="ticker">
+        ● EXCLUSIVE FOR OPENCLAW USERS // NO API KEYS · NO SETUP · ZERO TECHNICAL SKILLS REQUIRED
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>
+                Write SEO Articles That <strong>Actually Rank</strong> — In Minutes, Not Days
+            </h1>
+            <p>
+                The SEO Content Writer skill turns your OpenClaw agent into a professional content machine. 2,000+ word articles optimized for Google's first page. Zero writing experience required. <strong>100% FREE today.</strong>
+            </p>
+            <a href="#claim" class="cta-button">Download FREE SEO Content Writer Skill →</a>
+            <div class="trust-badges">
+                <span>✓ Instant download</span>
+                <span>✓ No credit card</span>
+                <span>✓ Works immediately</span>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">2,000+</div>
+                    <div class="label">Words Per Article</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">$2K</div>
+                    <div class="label">Freelancer Cost</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">0</div>
+                    <div class="label">API Keys Needed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">FREE</div>
+                    <div class="label">Your Price Today</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-label">// THE PROBLEM</div>
+            <h2>You Need Content. But Quality SEO Writing Is Expensive & Time-Consuming.</h2>
+            <p>
+                Organic search traffic is the holy grail — it's free, compounds over time, and converts 5x better than paid ads. But here's the catch:
+            </p>
+            <p>
+                <strong>Professional SEO writers charge $500–$2,000 per article.</strong> And that's just for ONE piece of content. If you want to publish consistently (which Google rewards), you're looking at $5,000–$10,000/month.
+            </p>
+            <p>
+                Writing it yourself? That's 6–10 hours per article if you want it done right. Keyword research, competitor analysis, outline, first draft, editing, optimization... most people give up after one post.
+            </p>
+            <p>
+                The SEO Content Writer skill solves all of this. One prompt. Five minutes. Professional-grade, SEO-optimized article. Done.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" style="background: rgba(26, 31, 46, 0.3);">
+        <div class="container">
+            <div class="section-label">// THE SOLUTION</div>
+            <h2>Professional SEO Content on Demand — Instantly</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="emoji">🎯</div>
+                    <h3>Keyword-Optimized</h3>
+                    <p>Automatically integrates primary and LSI keywords naturally throughout the content for maximum ranking potential.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">📊</div>
+                    <h3>Structured for SEO</h3>
+                    <p>Perfect H1/H2/H3 hierarchy, meta descriptions, intro hooks, and content flow that Google loves.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">💡</div>
+                    <h3>Featured Snippet Ready</h3>
+                    <p>Formatted with bullet lists, tables, and direct answers designed to capture position zero.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">🔍</div>
+                    <h3>Competitor Analysis</h3>
+                    <p>Analyzes top-ranking articles and creates content that beats them on depth and quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">📝</div>
+                    <h3>Long-Form Ready</h3>
+                    <p>Generates comprehensive 2,000–4,000 word articles that establish topical authority.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">⚡</div>
+                    <h3>5-Minute Turnaround</h3>
+                    <p>What takes a writer 8 hours, your OpenClaw agent delivers in under 5 minutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-label">// THE VALUE</div>
+            <h2>What This Skill Is Actually Worth</h2>
+            <div class="value-box">
+                <div class="old-price">$500–$2,000 per article</div>
+                <div class="new-price">$0</div>
+                <div class="savings">Professional SEO writers charge up to $2,000/article. You pay nothing.</div>
+            </div>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto;">
+                If you publish just <strong>2 articles per month</strong>, this skill saves you <strong>$12,000–$48,000 per year</strong> in writing costs. And you can use it unlimited times.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="examples" style="background: rgba(26, 31, 46, 0.3);">
+        <div class="container">
+            <div class="section-label">// EXAMPLE PROMPTS</div>
+            <h2>See What You Can Create in Seconds</h2>
+            <p>Just tell your OpenClaw agent what you need. Here are real examples:</p>
+            <div class="examples-list">
+                <h4>💬 What You Say:</h4>
+                <ul>
+                    <li>"Write a 2000-word article for 'best project management tools 2026'"</li>
+                    <li>"Analyze top results for 'how to start a podcast' and write a better article"</li>
+                    <li>"Complete SEO guide on 'email marketing for ecommerce' with examples"</li>
+                    <li>"How-to guide optimized for featured snippets: 'how to create a sales funnel'"</li>
+                    <li>"Comprehensive comparison: 'Notion vs Monday.com vs Asana' 3000 words"</li>
+                    <li>"Write SEO article targeting 'passive income ideas' for affiliate marketing"</li>
+                </ul>
+            </div>
+            <p style="text-align: center; margin-top: 32px;">
+                Each article is research-backed, keyword-optimized, and ready to publish. No editing required.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="how">
+        <div class="container">
+            <div class="section-label">// HOW IT WORKS</div>
+            <h2>Up and Running in 3 Simple Steps</h2>
+            <div class="how-it-works">
+                <div class="step-card">
+                    <div class="step-number">📥</div>
+                    <h3>01 — Download Skill</h3>
+                    <p>Enter your email below and get instant access. No credit card, no strings attached.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">⚡</div>
+                    <h3>02 — Install in OpenClaw</h3>
+                    <p>Drop the skill file into OpenClaw. Takes less than 60 seconds. Zero configuration.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">🚀</div>
+                    <h3>03 — Start Writing</h3>
+                    <p>Type your prompt and get professional SEO articles in minutes. That's it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: rgba(26, 31, 46, 0.3);">
+        <div class="container">
+            <div class="section-label">// SOCIAL PROOF</div>
+            <h2>OpenClaw Users Are Getting Results</h2>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"I was spending $2,000/month on SEO writers. Now I use the SEO Content Writer skill and produce better content in a fraction of the time. ROI is insane."</div>
+                    <div class="author">— Emma W., Content Creator</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"This skill wrote a 3,000-word guide that ranked #3 on Google within 2 weeks. My organic traffic doubled. I can't believe this is free."</div>
+                    <div class="author">— Marcus T., SaaS Founder</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"I needed 20 articles for a client's blog. Took me 4 hours instead of 4 weeks. The client was blown away by the quality. Charged $8,000 for the project."</div>
+                    <div class="author">— James L., Freelance Consultant</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"Finally cracked the featured snippet for my main keyword. The skill's formatting made it happen. Traffic went from 500 to 3,200 visitors/month."</div>
+                    <div class="author">— Priya R., E-commerce Owner</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="claim">
+        <div class="container">
+            <div class="section-label">// CLAIM YOUR FREE ACCESS</div>
+            <div class="form-section">
+                <h2>Download the SEO Content Writer Skill — FREE</h2>
+                <form id="optinForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your full name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your email address *" required>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">
+                        Download FREE Skill →
+                    </button>
+                </form>
+                <div class="form-disclaimer">
+                    No credit card. No spam. Just instant access to the SEO Content Writer skill.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo">🦀 OpenClaw</div>
+            <div class="tagline">The AI that actually does things.</div>
+            <div class="copyright">© 2026 OpenClaw. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('optinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Replace with your actual opt-in integration
+            alert('Thank you! Check your email for the download link.');
+        });
+    </script>
+</body>
+</html>
