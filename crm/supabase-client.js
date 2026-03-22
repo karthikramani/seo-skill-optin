@@ -1,14 +1,27 @@
 // Supabase Client for CRM
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+// Using CDN version that works without ES6 modules
 
-// Initialize Supabase client
 const SUPABASE_URL = 'https://tfpaqpntfqxteuskooob.supabase.co'
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmcGFxcG50ZnF4dGV1c2tvb29iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDY0OTUsImV4cCI6MjA4OTc4MjQ5NX0.yzXC7ReUjwnrMGIqWVbW-QBmk2UrifoddHk9s4PdDBY'
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+// Wait for supabase library to load from CDN
+let supabase;
+function initSupabase() {
+    if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('✅ Supabase initialized');
+        return true;
+    }
+    return false;
+}
 
 // Load contacts from Supabase
 async function loadContacts() {
+    // Initialize Supabase if not already done
+    if (!supabase && !initSupabase()) {
+        throw new Error('Supabase not loaded');
+    }
+    
     try {
         const { data, error } = await supabase
             .from('contacts')
