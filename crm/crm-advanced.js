@@ -70,36 +70,17 @@ What topics are you writing about?
     }
 };
 
-// Load data (now async, uses Supabase)
-async function loadContacts() {
-    if (window.SUPABASE_CRM && window.SUPABASE_CRM.loadContacts) {
-        await window.SUPABASE_CRM.loadContacts();
-    } else {
-        // Fallback to localStorage
-        const stored = localStorage.getItem('crm_contacts');
-        if (stored) {
-            contacts = JSON.parse(stored);
-        }
+// Load data from localStorage
+function loadContacts() {
+    const stored = localStorage.getItem('crm_contacts');
+    if (stored) {
+        contacts = JSON.parse(stored);
     }
 }
 
-// Save data (now async, uses Supabase)
-async function saveContacts() {
-    if (window.SUPABASE_CRM && window.SUPABASE_CRM.saveContacts) {
-        await window.SUPABASE_CRM.saveContacts();
-    } else {
-        // Fallback to localStorage
-        localStorage.setItem('crm_contacts', JSON.stringify(contacts));
-    }
-}
-
-// Save single contact (optimized for Supabase)
-async function saveContact(contact) {
-    if (window.SUPABASE_CRM && window.SUPABASE_CRM.saveContact) {
-        await window.SUPABASE_CRM.saveContact(contact);
-    } else {
-        await saveContacts();
-    }
+// Save data to localStorage
+function saveContacts() {
+    localStorage.setItem('crm_contacts', JSON.stringify(contacts));
 }
 
 // Get all unique tags
@@ -893,24 +874,11 @@ function exportToCSV() {
     const filtered = getFilteredContacts();
     const csv = [
         ['Name', 'Email', 'Phone', 'Stage', 'Source', 'Tags', 'Created At', 'Emails Sent',
-// Initialize CRM (async)
-async function initCRM() {
-    await loadContacts();
+// Initialize CRM
+function initCRM() {
+    loadContacts();
     renderPipeline();
-    
-    // Sync localStorage to Supabase if this is first load
-    if (window.SUPABASE_CRM && window.SUPABASE_CRM.syncLocalStorageToSupabase) {
-        await window.SUPABASE_CRM.syncLocalStorageToSupabase();
-    }
-    
-    // Optional: Enable real-time updates
-    if (window.SUPABASE_CRM && window.SUPABASE_CRM.subscribeToContacts) {
-        window.SUPABASE_CRM.subscribeToContacts((payload) => {
-            console.log('📡 Real-time update received');
-            // Refresh the view when data changes
-            refreshPipeline();
-        });
-    }
+    console.log('✅ CRM initialized with', contacts.length, 'contacts');
 }
 
 // Export to CSV (complete function)
