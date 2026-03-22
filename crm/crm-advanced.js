@@ -70,10 +70,10 @@ What topics are you writing about?
     }
 };
 
-// Load data (now async, uses API)
+// Load data (now async, uses Supabase)
 async function loadContacts() {
-    if (window.CRM_API && window.CRM_API.loadContacts) {
-        await window.CRM_API.loadContacts();
+    if (window.SUPABASE_CRM && window.SUPABASE_CRM.loadContacts) {
+        await window.SUPABASE_CRM.loadContacts();
     } else {
         // Fallback to localStorage
         const stored = localStorage.getItem('crm_contacts');
@@ -83,13 +83,22 @@ async function loadContacts() {
     }
 }
 
-// Save data (now async, uses API)
+// Save data (now async, uses Supabase)
 async function saveContacts() {
-    if (window.CRM_API && window.CRM_API.saveContacts) {
-        await window.CRM_API.saveContacts();
+    if (window.SUPABASE_CRM && window.SUPABASE_CRM.saveContacts) {
+        await window.SUPABASE_CRM.saveContacts();
     } else {
         // Fallback to localStorage
         localStorage.setItem('crm_contacts', JSON.stringify(contacts));
+    }
+}
+
+// Save single contact (optimized for Supabase)
+async function saveContact(contact) {
+    if (window.SUPABASE_CRM && window.SUPABASE_CRM.saveContact) {
+        await window.SUPABASE_CRM.saveContact(contact);
+    } else {
+        await saveContacts();
     }
 }
 
@@ -889,9 +898,18 @@ async function initCRM() {
     await loadContacts();
     renderPipeline();
     
-    // Sync localStorage to API if this is first load with API available
-    if (window.CRM_API && window.CRM_API.syncLocalStorageToAPI) {
-        await window.CRM_API.syncLocalStorageToAPI();
+    // Sync localStorage to Supabase if this is first load
+    if (window.SUPABASE_CRM && window.SUPABASE_CRM.syncLocalStorageToSupabase) {
+        await window.SUPABASE_CRM.syncLocalStorageToSupabase();
+    }
+    
+    // Optional: Enable real-time updates
+    if (window.SUPABASE_CRM && window.SUPABASE_CRM.subscribeToContacts) {
+        window.SUPABASE_CRM.subscribeToContacts((payload) => {
+            console.log('📡 Real-time update received');
+            // Refresh the view when data changes
+            refreshPipeline();
+        });
     }
 }
 
