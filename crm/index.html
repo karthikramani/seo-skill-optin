@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Skill CRM - Pipeline & Email Follow-ups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e8eaed;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(26, 31, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: #00ff88;
+        }
+
+        .header .stats {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            color: #b8babd;
+        }
+
+        .header .stats span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header .stats .number {
+            font-weight: 700;
+            color: #00ff88;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .toolbar {
+            background: rgba(26, 31, 46, 0.5);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px;
+            background: rgba(10, 14, 26, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .search-box input::placeholder {
+            color: #666;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0e1a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #e8eaed;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stage {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            min-height: 500px;
+        }
+
+        .stage-header {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stage-title {
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stage-count {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .stage-body {
+            padding: 12px;
+        }
+
+        .contact-card {
+            background: rgba(10, 14, 26, 0.8);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .contact-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: white;
+        }
+
+        .contact-email {
+            font-size: 12px;
+            color: #b8babd;
+            margin-bottom: 8px;
+        }
+
+        .contact-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .contact-date {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .contact-actions button {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .contact-actions button:hover {
+            background: rgba(0, 255, 136, 0.2);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1f2e;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            color: #00ff88;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 24px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(10, 14, 26, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+
+        .contact-detail {
+            background: rgba(10, 14, 26, 0.5);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .contact-detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-detail-label {
+            color: #b8babd;
+            font-size: 13px;
+        }
+
+        .contact-detail-value {
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1200px) {
+            .pipeline {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pipeline {
+                grid-template-columns: 1fr;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 SEO Skill CRM</h1>
+        <div class="stats">
+            <span>📥 Total Leads: <span class="number" id="totalLeads">0</span></span>
+            <span>✅ Customers: <span class="number" id="totalCustomers">0</span></span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search contacts...">
+            </div>
+            <div class="toolbar-actions">
+                <button class="btn btn-secondary" onclick="refreshPipeline()">🔄 Refresh</button>
+                <button class="btn btn-primary" onclick="showAddContactModal()">➕ Add Contact</button>
+            </div>
+        </div>
+
+        <div class="pipeline" id="pipeline">
+            <!-- Pipeline stages will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Contact Detail Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contact Details</h2>
+                <button class="modal-close" onclick="closeModal('contactModal')">×</button>
+            </div>
+            <div class="modal-body" id="contactModalBody">
+                <!-- Contact details will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div class="modal" id="addContactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Contact</h2>
+                <button class="modal-close" onclick="closeModal('addContactModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addContactForm">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stage</label>
+                        <select name="stage">
+                            <option value="1">New Lead</option>
+                            <option value="2">Contacted</option>
+                            <option value="3">Engaged</option>
+                            <option value="4">Customer</option>
+                            <option value="5">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea name="notes" placeholder="Add any notes about this contact..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addContactModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveContact()">Save Contact</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal" id="emailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📧 Send Email</h2>
+                <button class="modal-close" onclick="closeModal('emailModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="emailForm">
+                    <input type="hidden" name="contactId" id="emailContactId">
+                    <div class="form-group">
+                        <label>To</label>
+                        <input type="email" name="to" id="emailTo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject *</label>
+                        <input type="text" name="subject" required placeholder="Email subject line">
+                    </div>
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea name="message" required placeholder="Your email message..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('emailModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="sendEmail()">📤 Send Email</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data storage (in a real app, this would be a backend)
+        let contacts = [];
+        let stages = [
+            { id: 1, name: 'New Lead', color: '#00ff88' },
+            { id: 2, name: 'Contacted', color: '#0099ff' },
+            { id: 3, name: 'Engaged', color: '#ff9900' },
+            { id: 4, name: 'Customer', color: '#9900ff' },
+            { id: 5, name: 'Inactive', color: '#666666' }
+        ];
+
+        // Load contacts from localStorage
+        function loadContacts() {
+            const stored = localStorage.getItem('crm_contacts');
+            if (stored) {
+                contacts = JSON.parse(stored);
+            }
+        }
+
+        // Save contacts to localStorage
+        function saveContacts() {
+            localStorage.setItem('crm_contacts', JSON.stringify(contacts));
+        }
+
+        // Render pipeline
+        function renderPipeline() {
+            const pipeline = document.getElementById('pipeline');
+            pipeline.innerHTML = '';
+
+            stages.forEach(stage => {
+                const stageContacts = contacts.filter(c => c.stage === stage.id);
+                
+                const stageEl = document.createElement('div');
+                stageEl.className = 'stage';
+                stageEl.innerHTML = `
+                    <div class="stage-header">
+                        <div class="stage-title">
+                            <span style="color: ${stage.color}">●</span>
+                            ${stage.name}
+                        </div>
+                        <div class="stage-count">${stageContacts.length}</div>
+                    </div>
+                    <div class="stage-body" id="stage-${stage.id}">
+                        ${stageContacts.length === 0 ? '<div class="empty-state">No contacts</div>' : ''}
+                    </div>
+                `;
+                pipeline.appendChild(stageEl);
+
+                const stageBody = stageEl.querySelector(`#stage-${stage.id}`);
+                stageContacts.forEach(contact => {
+                    const card = createContactCard(contact);
+                    stageBody.appendChild(card);
+                });
+            });
+
+            updateStats();
+        }
+
+        // Create contact card
+        function createContactCard(contact) {
+            const card = document.createElement('div');
+            card.className = 'contact-card';
+            card.onclick = () => showContactDetails(contact);
+            
+            const date = new Date(contact.createdAt);
+            const dateStr = date.toLocaleDateString();
+
+            card.innerHTML = `
+                <div class="contact-name">${contact.name}</div>
+                <div class="contact-email">${contact.email}</div>
+                <div class="contact-meta">
+                    <div class="contact-date">📅 ${dateStr}</div>
+                </div>
+                <div class="contact-actions" onclick="event.stopPropagation()">
+                    <button onclick="showEmailModal(${contact.id})">📧 Email</button>
+                    <button onclick="moveContact(${contact.id}, ${contact.stage + 1})">→</button>
+                </div>
+            `;
+            return card;
+        }
+
+        // Show contact details
+        function showContactDetails(contact) {
+            const modal = document.getElementById('contactModal');
+            const body = document.getElementById('contactModalBody');
+            
+            const stage = stages.find(s => s.id === contact.stage);
+            const date = new Date(contact.createdAt).toLocaleString();
+
+            body.innerHTML = `
+                <div class="contact-detail">
+                    <div class="contact-detail-row">
+                        <span class="contact-detail-label">Name</span>
+                        <span class="contact-detail-value">${contact.name}</span>
+                    </div>
+                    <div class="contact-detail-row">
+                        <span class="contact-detail-label">Email</span>
+                        <span class="contact-detail-value">${contact.email}</span>
+                    </div>
+                    <div class="contact-detail-row">
+                        <span class="contact-detail-label">Stage</span>
+                        <span class="contact-detail-value" style="color: ${stage.color}">${stage.name}</span>
+                    </div>
+                    <div class="contact-detail-row">
+                        <span class="contact-detail-label">Created</span>
+                        <span class="contact-detail-value">${date}</span>
+                    </div>
+                    ${contact.notes ? `
+                    <div class="contact-detail-row">
+                        <span class="contact-detail-label">Notes</span>
+                        <span class="contact-detail-value">${contact.notes}</span>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="deleteContact(${contact.id})">🗑️ Delete</button>
+                    <button class="btn btn-primary" onclick="showEmailModal(${contact.id})">📧 Send Email</button>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Show add contact modal
+        function showAddContactModal() {
+            document.getElementById('addContactForm').reset();
+            document.getElementById('addContactModal').classList.add('active');
+        }
+
+        // Save contact
+        function saveContact() {
+            const form = document.getElementById('addContactForm');
+            const formData = new FormData(form);
+            
+            const contact = {
+                id: contacts.length > 0 ? Math.max(...contacts.map(c => c.id)) + 1 : 1,
+                name: formData.get('name'),
+                email: formData.get('email'),
+                stage: parseInt(formData.get('stage')),
+                notes: formData.get('notes'),
+                createdAt: new Date().toISOString()
+            };
+
+            contacts.push(contact);
+            saveContacts();
+            renderPipeline();
+            closeModal('addContactModal');
+        }
+
+        // Move contact to next stage
+        function moveContact(contactId, nextStage) {
+            const contact = contacts.find(c => c.id === contactId);
+            if (contact && nextStage <= stages.length) {
+                contact.stage = nextStage;
+                saveContacts();
+                renderPipeline();
+            }
+        }
+
+        // Delete contact
+        function deleteContact(contactId) {
+            if (confirm('Are you sure you want to delete this contact?')) {
+                contacts = contacts.filter(c => c.id !== contactId);
+                saveContacts();
+                renderPipeline();
+                closeModal('contactModal');
+            }
+        }
+
+        // Show email modal
+        function showEmailModal(contactId) {
+            const contact = contacts.find(c => c.id === contactId);
+            if (contact) {
+                document.getElementById('emailContactId').value = contact.id;
+                document.getElementById('emailTo').value = contact.email;
+                document.getElementById('emailForm').reset();
+                document.getElementById('emailTo').value = contact.email;
+                closeModal('contactModal');
+                document.getElementById('emailModal').classList.add('active');
+            }
+        }
+
+        // Send email (this will log to console for now, integrate with AgentMail later)
+        function sendEmail() {
+            const form = document.getElementById('emailForm');
+            const formData = new FormData(form);
+            
+            const emailData = {
+                contactId: formData.get('contactId'),
+                to: formData.get('to'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                sentAt: new Date().toISOString()
+            };
+
+            console.log('📧 Email to send:', emailData);
+            
+            // TODO: Integrate with AgentMail API here
+            alert('Email sent! (Integration with AgentMail coming next)');
+            
+            // Move contact to "Contacted" stage if they're in "New Lead"
+            const contactId = parseInt(emailData.contactId);
+            const contact = contacts.find(c => c.id === contactId);
+            if (contact && contact.stage === 1) {
+                contact.stage = 2;
+                saveContacts();
+                renderPipeline();
+            }
+
+            closeModal('emailModal');
+        }
+
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Update stats
+        function updateStats() {
+            document.getElementById('totalLeads').textContent = contacts.length;
+            document.getElementById('totalCustomers').textContent = contacts.filter(c => c.stage === 4).length;
+        }
+
+        // Refresh pipeline
+        function refreshPipeline() {
+            loadContacts();
+            renderPipeline();
+        }
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.contact-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.contact-name').textContent.toLowerCase();
+                const email = card.querySelector('.contact-email').textContent.toLowerCase();
+                
+                if (name.includes(query) || email.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Close modals on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal('contactModal');
+                closeModal('addContactModal');
+                closeModal('emailModal');
+            }
+        });
+
+        // Initialize
+        loadContacts();
+        renderPipeline();
+    </script>
+</body>
+</html>

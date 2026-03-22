@@ -744,9 +744,22 @@
             const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
             
-            // TODO: Send to your email marketing service here
-            // Example: send to ConvertKit, ActiveCampaign, etc.
-            console.log('Lead captured:', { name, email });
+            // Save to CRM (localStorage)
+            const contact = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                stage: 1, // New Lead
+                source: 'seo-skill-optin',
+                notes: 'Opted in for SEO Content Writer skill',
+                createdAt: new Date().toISOString()
+            };
+            
+            let contacts = JSON.parse(localStorage.getItem('crm_contacts') || '[]');
+            contacts.push(contact);
+            localStorage.setItem('crm_contacts', JSON.stringify(contacts));
+            
+            console.log('✅ Lead saved to CRM:', contact);
             
             // Redirect to thank you page
             window.location.href = '/thank-you.html';
